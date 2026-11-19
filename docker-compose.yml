@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16
+    env_file: .env.docker
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+    env_file: .env.docker
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - artifacts:/app/artifacts
+
+  # Simple daily scheduler. In production prefer a cron job or Kubernetes CronJob running the same command.
+  scheduler:
+    build: .
+    env_file: .env.docker
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - artifacts:/app/artifacts
+    command: sh -c "while true; do python manage.py run_daily || true; sleep 86400; done"
+
+volumes:
+  pgdata:
+  artifacts:

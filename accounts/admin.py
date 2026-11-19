@@ -1,0 +1,19 @@
+from django.contrib import admin
+
+from .models import AuditLog, UserProfile
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "role")
+    filter_horizontal = ("facilities",)
+
+
+@admin.register(AuditLog)
+class AuditLogAdmin(admin.ModelAdmin):
+    list_display = ("created_at", "actor", "action", "object_type", "object_id")
+    list_filter = ("action", "object_type")
+
+    def has_add_permission(self, request): return False
+    def has_change_permission(self, request, obj=None): return False
+    def has_delete_permission(self, request, obj=None): return False
