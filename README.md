@@ -1,4 +1,4 @@
-# Medicine Stockout Prediction (MSP): Backend
+# OpenMed AI: Predicting and Preventing Medicine Stockouts Through Open AI: Backend
 
 An AI-powered decision-support system that predicts medicine stockouts across a network of health facilities and helps supply-chain officials act before shortages occur.
 
