@@ -1,3 +1,5 @@
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/607fabb0-eca0-4496-ae7c-c7ad777d3a6e" />
+
 # OpenMed AI: Predicting and Preventing Medicine Stockouts Through Open AI: Backend
 
 An AI-powered decision-support system that predicts medicine stockouts across a network of health facilities and helps supply-chain officials act before shortages occur.
