@@ -111,6 +111,3 @@ GIT_COMMIT=$(git rev-parse --short HEAD) docker compose up --build
 - `docs/UAT.md`: user acceptance test scenarios
 - `/api/docs/`: OpenAPI (Swagger) documentation
 
-## License
-
-Choose a licence before publishing (for example MIT or Apache-2.0) and add a `LICENSE` file.
